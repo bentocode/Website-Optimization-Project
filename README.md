@@ -29,7 +29,18 @@ Clone the repository and open index.html or views/pizza.html with a web browser 
 
 ### pizza.html
 
-- The function updatePositions() was updated so that layout calculation was made outside the for loop
+- The function updatePositions() was updated so that layout calculation was made outside the for loop.
+
+-
 
 - The function changePizzaSizes() was updated so that the geometric calculation of width was run once and with one example pizza.
 
+- Created a local variable randomPizzaContainer outside the loop for changePizzaSizes().
+
+- Use document.getElementById() in the changeSliderLabel() function.
+
+- Use document.getElementsByClassName() in the changePizzaSizes() function.
+
+- Declared the pizzasDiv variable outside of the loop line 480.
+
+-

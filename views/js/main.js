@@ -424,7 +424,8 @@ var resizePizzas = function(size) {
    // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
   function determineDx (elem, size) {
     var oldWidth = elem.offsetWidth;
-    var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
+    // change document.querySelector to document.getElementById()
+    var windowWidth = document.document.getElementById("randomPizzas").offsetWidth;
     var oldSize = oldWidth / windowWidth;
 
     // Changes the slider value to a percent width
@@ -451,15 +452,16 @@ var resizePizzas = function(size) {
   function changePizzaSizes(size) {
     // calculate new width for pizzas
     // since all pizzas are same size, we can do this with one example pizza
-    var examplePizza = document.querySelectorAll(".randomPizzaContainer")[0];
+    // Use document.getElementsByClassName() instead of querySelector
+    var examplePizza = document.getElementsByClassName("randomPizzaContainer")[0];
     var dx = determineDx(examplePizza, size);
     var newwidth = (examplePizza.offsetWidth + dx) + 'px';
 
+    // created variable outside the loop
+    var randomPizzaContainer =  document.getElementsByClassName('randomPizzaContainer');
     // loop through all pizzas and change width to determined newWidth
     for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-
-
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+       randomPizzaContainer[i].style.width = newwidth;
     }
   }
 
@@ -475,9 +477,11 @@ var resizePizzas = function(size) {
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
+// Declared variable outside of the loop
+  var pizzasDiv = document.getElementById("randomPizzas");
 // This for-loop actually creates and appends all of the pizzas when the page loads
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
+
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -509,7 +513,7 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
+  var items = document.getElementsByClassName('mover');
     // calculate number based on scroll position, same for all pizzas
   var bodyNum = (document.body.scrollTop / 1250);
   // calculate phase number for all possible outcomes of n % 5
@@ -542,7 +546,9 @@ window.addEventListener('scroll', updatePositions);
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
-  var s = 256;
+  var s = screen.height;
+  var movingPizzas = document.getElementById('movingPizzas1');
+
   for (var i = 0; i < 200; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
@@ -551,7 +557,8 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    movingPizzas.appendChild(elem);
   }
+
   updatePositions();
 });
