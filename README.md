@@ -23,9 +23,10 @@ Clone the repository and open index.html or views/pizza.html with a web browser 
 - Load images from local img folder
 - Load fonts using javascript
 - Minify files
-- Make use of limited inline CSS
+- Changed all CSS to inline style
 - Move scripts to end of the body element so they execute in an Idle period.
 - Change external script loading to asynchronous
+- Optimized the pizzeria.jpg using the online tool [Optimizilla](http://optimizilla.com/). Renamed to pizzeria-min.jpg
 
 ### pizza.html
 

@@ -425,7 +425,7 @@ var resizePizzas = function(size) {
   function determineDx (elem, size) {
     var oldWidth = elem.offsetWidth;
     // change document.querySelector to document.getElementById()
-    var windowWidth = document.document.getElementById("randomPizzas").offsetWidth;
+    var windowWidth = document.getElementById("randomPizzas").offsetWidth;
     var oldSize = oldWidth / windowWidth;
 
     // Changes the slider value to a percent width
@@ -546,10 +546,10 @@ window.addEventListener('scroll', updatePositions);
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
-  var s = screen.height;
+  var s = 256;
   var movingPizzas = document.getElementById('movingPizzas1');
 
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < ((screen.height / s) * cols); i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
